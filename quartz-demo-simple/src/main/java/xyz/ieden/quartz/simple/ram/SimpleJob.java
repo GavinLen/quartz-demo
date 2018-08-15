@@ -9,15 +9,18 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 
 /**
- * @author lianghongwei01
- * @date 2018/8/15 17:06
+ * @author gavin
+ * @date 2018/8/15 23:37
  */
-public class RamJob implements Job {
+public class SimpleJob implements Job {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RamJob.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleJob.class);
+
+    public SimpleJob() {
+    }
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        LOGGER.info("RamJob Execute Date:[{}].", new Date());
+        LOGGER.info("Simple Job:[{}].", new Date());
     }
 }

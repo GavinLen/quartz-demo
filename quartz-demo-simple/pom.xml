@@ -12,6 +12,7 @@
     <groupId>xyz.ieden</groupId>
     <artifactId>quartz-demo-simple</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <quartz.version>2.3.0</quartz.version>

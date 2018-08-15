@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>quartz-demo-simple</module>
+        <module>quartz-demo-ssm</module>
     </modules>
 
     <name>quartz-demo</name>
