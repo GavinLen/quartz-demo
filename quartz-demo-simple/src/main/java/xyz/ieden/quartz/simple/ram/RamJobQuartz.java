@@ -18,30 +18,33 @@ public class RamJobQuartz {
     private static final Logger LOGGER = LoggerFactory.getLogger(RamJobQuartz.class);
 
     public static void main(String[] args) throws SchedulerException {
-        // 1.创建Scheduler的工厂
+        // 1.创建调度工厂
         SchedulerFactory sf = new StdSchedulerFactory();
         // 2.从工厂中获取调度器实例
         Scheduler scheduler = sf.getScheduler();
 
-
-        //3.创建JobDetail
+        //3.创建 JobDetail
         JobDetail jb = JobBuilder.newJob(RamJob.class)
-                .withDescription("this is a ram job") //job的描述
-                .withIdentity("ramJob", "ramGroup") //job 的name和group
+                // job的描述
+                .withDescription("this is a xyz.ieden.quartz.simple.ram job")
+                // job 的name和group
+                .withIdentity("ramJob", "ramGroup")
                 .build();
 
-        //任务运行的时间，SimpleSchedle类型触发器有效
-        long time = System.currentTimeMillis() + 3 * 1000L; //3秒后启动任务
+        // 调度延后时间
+        long time = System.currentTimeMillis() + 3 * 1000L;
         Date statTime = new Date(time);
 
-        //4.创建Trigger
-        //使用SimpleScheduleBuilder或者CronScheduleBuilder
+        //4.创建触发器
+        //使用 SimpleScheduleBuilder 或者 CronScheduleBuilder
         Trigger t = TriggerBuilder.newTrigger()
                 .withDescription("")
                 .withIdentity("ramTrigger", "ramTriggerGroup")
                 //.withSchedule(SimpleScheduleBuilder.simpleSchedule())
-                .startAt(statTime)  //默认当前时间启动
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/2 * * * * ?")) //两秒执行一次
+                //默认当前时间启动
+                .startAt(statTime)
+                //两秒执行一次
+                .withSchedule(CronScheduleBuilder.cronSchedule("0/2 * * * * ?"))
                 .build();
 
         //5.注册任务和定时器
